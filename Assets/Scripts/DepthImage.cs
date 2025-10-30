@@ -67,7 +67,7 @@ public class DepthImage : MonoBehaviour
     {
         if (!m_OcclusionManager.TryGetEnvironmentDepthTexture(out var envDepth))
         {
-            envDepth = null;
+            return;
         }
 
         // Show depth image
