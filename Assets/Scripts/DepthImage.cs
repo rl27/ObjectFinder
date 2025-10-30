@@ -123,6 +123,13 @@ public class DepthImage : MonoBehaviour
         if (camera.transform.localToWorldMatrix != Matrix4x4.identity)
             localToWorldTransform = camera.transform.localToWorldMatrix * screenRotation;
 
+        ProcessDepthImage();
+    }
+
+    void ProcessDepthImage()
+    {
+        if (depthArray == null || depthArray.Length == 0)
+            return;
         Debug.Log("Distance at pixel (0,0): " + GetDepth(0,0));
     }
 
