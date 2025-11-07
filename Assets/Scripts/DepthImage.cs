@@ -100,6 +100,10 @@ public class DepthImage : MonoBehaviour
         float minDimension = 480.0f;
         float maxDimension = Mathf.Round(minDimension * textureAspectRatio);
         m_RawDepthImage.rectTransform.sizeDelta = new Vector2(maxDimension, minDimension);
+
+        depthWidth = envDepth.width;
+        depthHeight = envDepth.height;
+        UpdateCameraParams();
     }
 
     void OnCameraFrameReceived(ARCameraFrameEventArgs args)
