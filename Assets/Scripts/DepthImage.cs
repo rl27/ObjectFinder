@@ -134,7 +134,18 @@ public class DepthImage : MonoBehaviour
     {
         if (depthArray == null || depthArray.Length == 0)
             return;
-        Debug.Log("Distance at pixel (0,0): " + GetDepth(0,0));
+
+        // Use ScreenToWorldPoint to acquire a 3D world point from depth in XR simulation.
+        // TransformLocalToWorld(ComputeVertex(...)) will not work in XR simulation.
+        int x = 0;
+        int y = 0;
+        Debug.Log("World point: " + camera.ScreenToWorldPoint(new Vector3(x,y,GetDepth(x,y))));
+        // The above usage is a simplifed version of the below; both are identical in XR simulation.
+        /*
+        camera.ScreenToWorldPoint(new Vector3(x * camera.pixelWidth / depthWidth,
+                                              y * camera.pixelHeight / depthHeight,
+                                              GetDepth(x,y))));
+        */
     }
 
     private bool UpdateDepthImages()
